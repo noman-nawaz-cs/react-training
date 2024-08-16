@@ -6,3 +6,9 @@
     padding:20px;
     width: 200px;
 }
+
+@media (max-width: 780px) {
+    .Person {
+        width: 80%;
+    }
+}

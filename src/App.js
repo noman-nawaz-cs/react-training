@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.module.css';
 import Person from '../src/components/Person/Person';
+
 
 class App extends Component {
   state = {
@@ -40,14 +41,16 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: '#eee',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
+    const assignedClasses = [];
+    if (this.state.persons.length <= 2) {
+      assignedClasses.push(classes.red);
+    }
+    if (this.state.persons.length <= 1) {
+      assignedClasses.push(classes.bold);
     }
 
     let persons = null;
+    let btnClass = classes.btn + ' ' + classes.btnNotToggle;
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -65,13 +68,14 @@ class App extends Component {
           }
         </div>
       )
+      btnClass = classes.btn + ' ' + classes.btnToggle;;
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
-        <div><button style={style} onClick={this.togglePersonsHandler}>Toggle Names</button></div>
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
+        <div><button className={btnClass} onClick={this.togglePersonsHandler}>Toggle Names</button></div>
         {persons}
       </div>
     );
