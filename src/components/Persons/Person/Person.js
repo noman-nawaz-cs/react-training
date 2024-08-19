@@ -2,9 +2,6 @@ import React from 'react';
 import classes from './Person.module.css'
 
 const person = ( props ) => {
-    let random = Math.random();
-    if(random > 0.90)
-        throw new Error('Something went wrong')
     return (
         <div className={classes.Person}>
             <h2>Name: {props.name} </h2>

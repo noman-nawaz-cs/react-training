@@ -1,33 +1,3 @@
 .App {
     text-align: center;
 }
-
-.red {
-    color:red;
-}
-
-.bold{
-    font-weight: bold;
-}
-
-.btn{
-    border: 1px solid blue;
-    color: white;
-    padding: 8px;
-    cursor: pointer; 
-}
-
-.btnNotToggle{
-    background-color: green;
-    &:hover {
-        background-color: rgb(62, 157, 62);
-    }
-}
-
-.btnToggle {
-    background-color: red;
-    &:hover {
-        background-color: salmon;
-        color:black
-    }
-}
