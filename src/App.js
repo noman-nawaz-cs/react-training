@@ -79,7 +79,7 @@ class App extends Component {
           this.state.showCockpit? (
             <CockPit
               showPersons = {this.state.showPersons}
-              persons = {this.state.persons}
+              personsLength = {this.state.persons.length}
               clicked = {this.togglePersonsHandler}
             />
           ) : null
