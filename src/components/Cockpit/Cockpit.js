@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react';
-import classes from './Cockpit.module.css'
+import React, {useEffect, useRef, useContext} from 'react';
+import classes from './Cockpit.module.css';
+import AuthContext from '../../context/auth-context';
 
 const Cockpit = (props)=> {
+    const toggleButtonRef = useRef(null);
     useEffect(()=> {
         console.log('[Cockpit.js] useEffect');
-        setTimeout(()=> {
-            alert('Data saved to cloud.')
-        }, 1000);
+        toggleButtonRef.current.click();
         return ()=> {
             console.log('[Cockpit.js] cleanup');
         }
@@ -19,6 +19,7 @@ const Cockpit = (props)=> {
         }
     });
 
+    const authContext = useContext(AuthContext);
 
     const assignedClasses = [];
     if (props.personsLength <= 2) 
@@ -34,7 +35,10 @@ const Cockpit = (props)=> {
         <div>
             <h1>Hi, I'm a React App</h1>
             <p className={assignedClasses.join(' ')}>This is really working!</p>
-            <div><button className={btnClass} onClick={props.clicked}>Toggle Names</button></div>
+            <div>
+                <button ref = {toggleButtonRef} className={btnClass} onClick={props.clicked}>Toggle Names</button>
+                <button onClick={authContext.login} className={btnClass}>Login</button>
+            </div>
         </div>    
     )
 }

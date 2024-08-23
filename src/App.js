@@ -5,6 +5,7 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import CockPit from '../src/components/Cockpit/Cockpit';
 import withClass from './hoc/withClass'
 import Auxiliary from './hoc/Auxiliary';
+import AuthContext from './context/auth-context';
 
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
     showPersons: false,
     showCockpit: true,
     changeCounter: 0,
+    authenticated: false
   };
 
   deletePersonHandler = (personIndex) => {
@@ -65,6 +67,10 @@ class App extends Component {
     this.setState({ showPersons:!doesShow });
   };
 
+  loginHandler = () => {
+    this.setState({authenticated: true});
+  }
+
   render() {
     console.log('[App.js] render');
     let persons = null;
@@ -83,16 +89,16 @@ class App extends Component {
     return (
       <Auxiliary>
         <button onClick={() => this.setState({showCockpit:false})}>Remove Cockpit</button>
-        {
-          this.state.showCockpit? (
+        <AuthContext.Provider value={{authenticated: this.state.authenticated, login: this.loginHandler }}>
+          {this.state.showCockpit? (
             <CockPit
               showPersons = {this.state.showPersons}
               personsLength = {this.state.persons.length}
               clicked = {this.togglePersonsHandler}
             />
-          ) : null
-        }
-        {persons}
+            ) : null}
+          {persons}
+        </AuthContext.Provider>
       </Auxiliary>
     );
   }
