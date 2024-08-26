@@ -1,0 +1,14 @@
+.Person{
+    display: inline-block;
+    border : 1px solid #eee;
+    box-shadow: 0 2px 2px #ccc;
+    margin:8px;
+    padding:20px;
+    width: 200px;
+}
+
+@media (max-width: 780px) {
+    .Person {
+        width: 80%;
+    }
+}
